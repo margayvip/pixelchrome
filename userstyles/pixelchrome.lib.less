@@ -1,0 +1,147 @@
+/*
+* This file is based on Catppuccin's Less Lib file.
+* Link to original: https://userstyles.catppuccin.com/lib/lib.less
+*/
+
+/* deno-fmt-ignore */
+@pixelchrome: {
+  @solid: {
+    @background:     rgb(30, 30, 32);
+    @surface:        rgb(30, 30, 32);
+    @surface-alt:    rgb(189, 195, 199);
+    @text:           rgb(170, 170, 172);
+    @text-muted:     rgb(127, 140, 141);
+    @text-dim:       rgb(100, 100, 100);
+    @accent:         rgb(61, 174, 233);
+    @positive:       rgb(85, 255, 255);
+    @neutral:        rgb(246, 116, 0);
+    @negative:       rgb(218, 68, 83);
+    @link:           rgb(100, 100, 100);
+    @link-visited:   rgb(127, 140, 141);
+    @hover:          rgb(110, 110, 112);
+    @focus:          rgb(80, 80, 82);
+    @selection:      rgb(114, 114, 116);
+    @selection-alt:  rgb(29, 153, 243);
+    @tooltip-bg:     rgb(30, 30, 32);
+    @tooltip-text:   rgb(170, 170, 172);
+  };
+
+  @blurred: {
+    @background:     rgba(30, 30, 32, 0.75);
+    @surface:        rgba(30, 30, 32, 0.65);
+    @surface-alt:    rgba(189, 195, 199, 0.45);
+    @text:           rgba(170, 170, 172, 0.95);
+    @text-muted:     rgba(127, 140, 141, 0.85);
+    @text-dim:       rgba(100, 100, 100, 0.80);
+    @accent:         rgba(61, 174, 233, 0.90);
+    @positive:       rgba(85, 255, 255, 0.90);
+    @neutral:        rgba(246, 116, 0, 0.85);
+    @negative:       rgba(218, 68, 83, 0.90);
+    @link:           rgba(100, 100, 100, 0.80);
+    @link-visited:   rgba(127, 140, 141, 0.75);
+    @hover:          rgba(110, 110, 112, 0.60);
+    @focus:          rgba(80, 80, 82, 0.70);
+    @selection:      rgba(114, 114, 116, 0.55);
+    @selection-alt:  rgba(29, 153, 243, 0.60);
+    @tooltip-bg:     rgba(77, 77, 77, 0.80);
+    @tooltip-text:   rgba(170, 170, 172, 0.95);
+  };
+};
+
+#lib {
+  .palette(@variant: solid) {
+    @background:     @pixelchrome[@@variant][@background];
+    @surface:        @pixelchrome[@@variant][@surface];
+    @surface-alt:    @pixelchrome[@@variant][@surface-alt];
+    @text:           @pixelchrome[@@variant][@text];
+    @text-muted:     @pixelchrome[@@variant][@text-muted];
+    @text-dim:       @pixelchrome[@@variant][@text-dim];
+    @accent:         @pixelchrome[@@variant][@accent];
+    @positive:       @pixelchrome[@@variant][@positive];
+    @neutral:        @pixelchrome[@@variant][@neutral];
+    @negative:       @pixelchrome[@@variant][@negative];
+    @link:           @pixelchrome[@@variant][@link];
+    @link-visited:   @pixelchrome[@@variant][@link-visited];
+    @hover:          @pixelchrome[@@variant][@hover];
+    @focus:          @pixelchrome[@@variant][@focus];
+    @selection:      @pixelchrome[@@variant][@selection];
+    @selection-alt:  @pixelchrome[@@variant][@selection-alt];
+    @tooltip-bg:     @pixelchrome[@@variant][@tooltip-bg];
+    @tooltip-text:   @pixelchrome[@@variant][@tooltip-text];
+
+    /* aliases to ease migration from catppuccin style names */
+    @base:           @background;
+    @mantle:         @surface;
+    @crust:          darken(@surface, 8%);
+    @surface0:       @surface;
+    @surface1:       lighten(@surface, 4%);
+    @surface2:       lighten(@surface, 8%);
+    @overlay0:       @text-dim;
+    @overlay1:       @text-muted;
+    @overlay2:       @text;
+    @subtext0:       @text-dim;
+    @subtext1:       @text-muted;
+    @text-primary:   @text;
+    @rosewater:      @text;           /* fallback */
+    @blue:           @accent;
+    @lavender:       @accent;
+    @green:          @positive;
+    @yellow:         @neutral;
+    @red:            @negative;
+  }
+
+  .defaults(@variant: solid) {
+    color-scheme: dark;
+
+    ::selection {
+      background-color: fade(@selection, 40%);
+      color: white;
+    }
+
+    input,
+    textarea {
+      &::placeholder {
+        color: @text-dim !important;
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .rgbify(@color) {
+    @rgb: red(@color), green(@color), blue(@color);
+  }
+
+  .hslify(@color) {
+    @raw: e(
+      %("%s, %s%, %s%", hue(@color), saturation(@color), lightness(@color))
+    );
+  }
+
+  .css-variables(@variant: solid) {
+    --pxc-background:     @background;
+    --pxc-surface:        @surface;
+    --pxc-surface-alt:    @surface-alt;
+    --pxc-text:           @text;
+    --pxc-text-muted:     @text-muted;
+    --pxc-text-dim:       @text-dim;
+    --pxc-accent:         @accent;
+    --pxc-positive:       @positive;
+    --pxc-neutral:        @neutral;
+    --pxc-negative:       @negative;
+    --pxc-link:           @link;
+    --pxc-link-visited:   @link-visited;
+    --pxc-hover:          @hover;
+    --pxc-focus:          @focus;
+    --pxc-selection:      @selection;
+    --pxc-selection-alt:  @selection-alt;
+    --pxc-tooltip-bg:     @tooltip-bg;
+    --pxc-tooltip-text:   @tooltip-text;
+
+    /* legacy / compatibility names */
+    --pxc-base:           @base;
+    --pxc-mantle:         @mantle;
+    --pxc-crust:          @crust;
+    --pxc-blue:           @accent;
+    --pxc-lavender:       @accent;
+  }
+}
